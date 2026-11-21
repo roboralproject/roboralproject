@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROBORALPROJECT</title>
+<meta name="description" content="ROBORALPROJECT: reggae canario hecho en Canarias, con timple, bajo hondo y letras sobre la gente, los oficios y los pueblos de las islas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Lora:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1B140E; --bg2:#221810; --card:#2A2017; --line:#3A2C1E; --line2:#6B5638;
+  --fg:#E9DCC3; --fg2:#CDBFA3; --muted:#B8A88A; --accent:#C9962B;
+  --display:'Alfa Slab One',Georgia,serif;
+  --body:Lora,Georgia,serif;
+  --mono:'Special Elite','Courier New',monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--fg);text-decoration:none}
+a:hover{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+img{max-width:100%;height:auto}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.pad{padding-block:clamp(48px,7vw,88px);padding-inline:clamp(16px,5vw,64px)}
+.eyebrow{font-family:var(--mono);font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0}
+h2{font-size:clamp(26px,3.6vw,40px);line-height:1.15;margin:12px 0 32px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;font-family:var(--mono);font-size:14px;letter-spacing:1px;text-transform:uppercase;border-radius:2px;border:1px solid var(--line2);color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#1B140E}
+.btn.primary:hover{color:#1B140E;filter:brightness(1.1)}
+
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding:20px clamp(16px,5vw,64px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:18px;letter-spacing:1px}
+nav{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--mono);font-size:14px;letter-spacing:1px;text-transform:uppercase}
+
+.hero{display:flex;flex-wrap:wrap;align-items:center;gap:48px;padding:clamp(48px,8vw,112px) clamp(16px,5vw,64px);background:linear-gradient(180deg,#2B1E12 0%,var(--bg) 100%)}
+.hero-text{flex:1 1 440px;min-width:0}
+.hero h1{font-size:clamp(30px,5.4vw,68px);line-height:1.08;margin:16px 0 20px}
+.hero p{margin:0 0 32px;max-width:52ch;font-size:20px;color:var(--fg2)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px}
+.hero-art{flex:0 1 320px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:28px}
+.hero-art .hex{width:100%;max-width:260px;height:auto}
+.hero-art .sello{width:140px;height:140px}
+
+.temas{display:flex;flex-wrap:wrap;gap:32px 40px}
+.tema{flex:1 1 200px;min-width:0;border-top:1px solid var(--line2);padding-top:16px}
+.tema h3{font-size:20px;color:var(--accent);margin-bottom:8px}
+.tema p{margin:0;color:var(--muted)}
+
+.band{background:var(--bg2)}
+.lead{margin:-16px 0 40px;max-width:60ch;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:24px}
+.song{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:4px;overflow:hidden;min-width:0}
+.cover{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#6B4E2E 0%,#2A1D12 100%);color:#D9C79F;font-family:var(--mono);font-size:13px;letter-spacing:2px}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.song-body{display:flex;flex-direction:column;gap:8px;flex:1;padding:20px}
+.tag{font-family:var(--mono);font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.song h3{font-size:22px;line-height:1.2}
+.song p{margin:0;color:var(--fg2)}
+.song-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:12px}
+
+.about{display:flex;flex-wrap:wrap;gap:48px}
+.about-text{flex:1 1 420px;min-width:0}
+.about-text p{margin:0 0 16px;max-width:60ch;color:var(--fg2)}
+.about-box{flex:1 1 300px;min-width:0;align-self:flex-start;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:4px}
+.about-box ul{list-style:none;margin:16px 0 0;padding:0;font-family:var(--mono);font-size:16px}
+.about-box li{padding:10px 0;border-bottom:1px solid var(--line)}
+.about-box li:last-child{border-bottom:0}
+
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px}
+.link{display:flex;flex-direction:column;gap:6px;min-height:96px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:4px}
+.link strong{font-family:var(--display);font-weight:400;font-size:22px}
+.link span{font-family:var(--mono);font-size:14px;color:var(--muted)}
+
+.contact p{margin:0 0 20px;max-width:60ch;color:var(--fg2)}
+.mail{font-family:var(--mono);font-size:20px;color:var(--accent);word-break:break-word}
+
+footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:28px clamp(16px,5vw,64px);border-top:1px solid var(--line);font-family:var(--mono);font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="brand" href="#inicio">
+    <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,4 92,27 92,73 50,96 8,73 8,27" fill="#241A10" stroke="#C9962B" stroke-width="5"/><text x="50" y="67" text-anchor="middle" font-size="50" font-family="'Alfa Slab One',Georgia,serif" fill="#C9962B">R</text></svg>
+    <span>ROBORALPROJECT</span>
+  </a>
+  <nav aria-label="Principal">
+    <a href="#canciones">Canciones</a>
+    <a href="#temas">Temas</a>
+    <a href="#proyecto">El proyecto</a>
+    <a href="#escuchar">Escuchar</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="eyebrow" style="color:var(--accent)">Reggae canario · Hecho en Canarias</span>
+    <h1>ROBORALPROJECT</h1>
+    <p>Reggae canario con timple, bajo hondo y letras sobre la gente, los oficios y los pueblos de las islas.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#canciones">Escuchar canciones</a>
+      <a class="btn" href="#contacto">Contacto</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <svg class="hex" viewBox="0 0 100 100" role="img" aria-label="Hexágono con una R, símbolo de ROBORALPROJECT"><polygon points="50,4 92,27 92,73 50,96 8,73 8,27" fill="#241A10" stroke="#C9962B" stroke-width="3"/><text x="50" y="68" text-anchor="middle" font-size="54" font-family="'Alfa Slab One',Georgia,serif" fill="#C9962B">R</text></svg>
+    <svg class="sello" viewBox="0 0 120 120" role="img" aria-label="Sello Hecho en Canarias con dos palmeras">
+      <defs><path id="arco" d="M16 60 A44 44 0 0 1 104 60"/></defs>
+      <circle cx="60" cy="60" r="57" fill="none" stroke="#8A6F43" stroke-width="2"/>
+      <circle cx="60" cy="60" r="51" fill="none" stroke="#8A6F43" stroke-width="1"/>
+      <text font-family="'Special Elite','Courier New',monospace" font-size="11" letter-spacing="2" fill="#C9B48A"><textPath href="#arco" startOffset="50%" text-anchor="middle">HECHO EN CANARIAS</textPath></text>
+      <g fill="none" stroke="#C9B48A" stroke-width="2.5" stroke-linecap="round">
+        <path d="M48 92 Q45 74 48 56"/><path d="M48 56 Q36 48 26 54"/><path d="M48 56 Q38 42 30 42"/><path d="M48 56 Q48 42 51 36"/><path d="M48 56 Q59 44 68 46"/><path d="M48 56 Q60 52 68 62"/>
+        <path d="M74 92 Q77 78 74 64"/><path d="M74 64 Q64 58 56 64"/><path d="M74 64 Q76 52 82 48"/><path d="M74 64 Q86 56 94 62"/><path d="M74 64 Q84 66 90 74"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section id="temas" class="pad">
+  <span class="eyebrow">De qué hablan las canciones</span>
+  <h2>Historias de las islas</h2>
+  <div class="temas">
+    <div class="tema"><h3>Oficios antiguos</h3><p>Quienes hicieron el trabajo de antes y cómo lo hacían.</p></div>
+    <div class="tema"><h3>Pueblos y lugares</h3><p>Rincones de Canarias contados desde dentro.</p></div>
+    <div class="tema"><h3>Costumbres</h3><p>Juegos, fiestas y tradiciones que se siguen contando.</p></div>
+    <div class="tema"><h3>Identidad canaria</h3><p>Raíces, familia y orgullo de tierra.</p></div>
+    <div class="tema"><h3>Personajes</h3><p>Gente real y cuentos de las islas.</p></div>
+  </div>
+</section>
+
+<section id="canciones" class="pad band">
+  <span class="eyebrow">Catálogo</span>
+  <h2>Canciones</h2>
+  <p class="lead">Cada tema parte de una historia. Escucha primero y, si te gusta, llévatela.</p>
+
+  <!--
+    PARA CADA CANCIÓN:
+    1) Sustituye <div class="cover">[PORTADA]</div> por: <div class="cover"><img src="portadas/nombre.jpg" alt="Portada de NOMBRE"></div>
+    2) Cambia href="#escuchar" por el enlace real de la canción.
+    3) Cambia href="#contacto" de "Comprar" por tu enlace de pago, y [PRECIO] por el precio.
+  -->
+  <div class="grid">
+
+    <article class="song">
+      <div class="cover">[PORTADA]</div>
+      <div class="song-body">
+        <span class="tag">Reggae canario</span>
+        <h3>Bola canaria (Monse)</h3>
+        <p>La amistad entre vecinos y las reglas del juego.</p>
+        <div class="song-actions">
+          <a class="btn primary" href="#escuchar">Escuchar</a>
+          <a class="btn" href="#contacto">Comprar · [PRECIO]</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="song">
+      <div class="cover">[PORTADA]</div>
+      <div class="song-body">
+        <span class="tag">Reggae roots · 66 BPM</span>
+        <h3>Camino de vuelta a casa</h3>
+        <p>Lento y nostálgico, con el timple solo al inicio.</p>
+        <div class="song-actions">
+          <a class="btn primary" href="#escuchar">Escuchar</a>
+          <a class="btn" href="#contacto">Comprar · [PRECIO]</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="song">
+      <div class="cover">[PORTADA]</div>
+      <div class="song-body">
+        <span class="tag">Reggae roots</span>
+        <h3>¿Quién vive mejor?</h3>
+        <p>Una mirada al rico y al pobre.</p>
+        <div class="song-actions">
+          <a class="btn primary" href="#escuchar">Escuchar</a>
+          <a class="btn" href="#contacto">Comprar · [PRECIO]</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="song">
+      <div class="cover">[PORTADA]</div>
+      <div class="song-body">
+        <span class="tag">Reggae canario</span>
+        <h3>Con calma</h3>
+        <p>Aprender sin prisa y la serenidad con ganas.</p>
+        <div class="song-actions">
+          <a class="btn primary" href="#escuchar">Escuchar</a>
+          <a class="btn" href="#contacto">Comprar · [PRECIO]</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="song">
+      <div class="cover">[PORTADA]</div>
+      <div class="song-body">
+        <span class="tag">Reggae canario oscuro</span>
+        <h3>Noche de Ánimas</h3>
+        <p>La Noche de Difuntos contada en clave de reggae.</p>
+        <div class="song-actions">
+          <a class="btn primary" href="#escuchar">Escuchar</a>
+          <a class="btn" href="#contacto">Comprar · [PRECIO]</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="song">
+      <div class="cover">[PORTADA]</div>
+      <div class="song-body">
+        <span class="tag">Reggae canario</span>
+        <h3>El lugar donde se nace</h3>
+        <p>Sobre el sitio donde uno nace y lo que deja en la vida.</p>
+        <div class="song-actions">
+          <a class="btn primary" href="#escuchar">Escuchar</a>
+          <a class="btn" href="#contacto">Comprar · [PRECIO]</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="proyecto" class="pad about">
+  <div class="about-text">
+    <span class="eyebrow">Quién hace esto</span>
+    <h2>El proyecto</h2>
+    <p>ROBORALPROJECT hace reggae canario desde Gran Canaria. Cada canción parte de una historia de las islas y se arma alrededor del timple de cinco cuerdas, con bajo profundo, bongós, cencerro, claves y órgano Hammond.</p>
+    <p>Las letras, las historias y la dirección artística son mías. La música se produce con herramientas de inteligencia artificial, y prefiero decirlo claro.</p>
+  </div>
+  <div class="about-box">
+    <span class="eyebrow" style="color:var(--accent)">En cada canción</span>
+    <ul>
+      <li>Timple canario de cinco cuerdas</li>
+      <li>Bajo profundo y cálido</li>
+      <li>Bongós y cencerro</li>
+      <li>Claves</li>
+      <li>Órgano Hammond</li>
+    </ul>
+  </div>
+</section>
+
+<section id="escuchar" class="pad band">
+  <span class="eyebrow">Dónde está la música</span>
+  <h2>Escuchar</h2>
+  <div class="links">
+    <a class="link" href="#escuchar"><strong>Spotify</strong><span>[ENLACE A SPOTIFY]</span></a>
+    <a class="link" href="#escuchar"><strong>YouTube</strong><span>[ENLACE A YOUTUBE]</span></a>
+    <a class="link" href="#escuchar"><strong>Apple Music</strong><span>[ENLACE A APPLE MUSIC]</span></a>
+  </div>
+</section>
+
+<section id="contacto" class="pad contact">
+  <span class="eyebrow">Hablemos</span>
+  <h2>Contacto</h2>
+  <p>Si quieres comprar una canción, usarla en un vídeo, un documental o un proyecto, o simplemente decirme qué te ha parecido, escríbeme.</p>
+  <a class="mail" href="mailto:TU@CORREO.COM">TU@CORREO.COM</a>
+</section>
+
+</main>
+
+<footer>
+  <span>© 2026 ROBORALPROJECT</span>
+  <span>Hecho en Canarias</span>
+</footer>
+
+</body>
+</html>
